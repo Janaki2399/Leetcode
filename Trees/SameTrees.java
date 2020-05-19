@@ -22,7 +22,7 @@ Output: false */
 Recursive Solution:
 
 	class Solution {
-    public boolean isSameTree(TreeNode p, TreeNode p) {
+    public boolean isSameTree(TreeNode p, TreeNode q) {
  	if(p == null && q == null){
             return true;
         }
@@ -31,8 +31,8 @@ Recursive Solution:
         }
         
         return p.data == p.data && 
-                sameTree(p.left, p.left) &&
-                sameTree(p.right, p.right);
+                sameTree(p.left, q.left) &&
+                sameTree(p.right, q.right);
         
     }
 }
