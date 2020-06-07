@@ -15,6 +15,7 @@ Output: 23
 */
 
 Solution:
+Inefficient approach:
 class Solution {
     public int rangeSumBST(TreeNode root, int L, int R) {
         Stack<TreeNode> st=new Stack<>();
@@ -38,5 +39,59 @@ class Solution {
             
         }
         return sum;
+    }
+}
+
+Efficient approach : use property of BST :
+
+class Solution {
+    public int rangeSumBST(TreeNode root, int L, int R) {
+        Stack<TreeNode> st=new Stack<>();
+        st.push(root);
+        int sum=0;
+        while(!st.isEmpty())
+        {
+            root=st.pop();
+            if(root!=null)
+            {
+            if(root.val>=L && root.val<=R)
+            {
+                sum+=root.val;
+            }
+            if(L<root.val)
+            {
+                
+                st.push(root.left);
+            }
+                
+            if( R>root.val)
+            {
+                st.push(root.right);
+            }
+            }
+        }
+        return sum;
+    }
+}
+
+Recursive approach:
+
+class Solution {
+    int ans;
+    public int rangeSumBST(TreeNode root, int L, int R) {
+        ans = 0;
+        dfs(root, L, R);
+        return ans;
+    }
+
+    public void dfs(TreeNode node, int L, int R) {
+        if (node != null) {
+            if (L <= node.val && node.val <= R)
+                ans += node.val;
+            if (L < node.val)
+                dfs(node.left, L, R);
+            if (node.val < R)
+                dfs(node.right, L, R);
+        }
     }
 }
