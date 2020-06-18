@@ -46,3 +46,33 @@ class Solution {
         }
     }
 }
+
+
+Solution 2: using string Builder:
+
+class Solution
+{
+public List<String> binaryTreePaths(TreeNode root) {
+    List<String> res = new ArrayList<>();
+    helper(res, new StringBuilder(), root);
+    return res;
+}
+
+private void helper(List<String> res, StringBuilder sb, TreeNode root) {
+    if(root == null) {
+        return;
+    }
+    int len = sb.length();
+    System.out.println(len);
+    if(root.left == null && root.right == null) {
+        sb.append(root.val);
+        res.add(sb.toString());
+        sb.setLength(len);
+        return;
+    }
+    sb.append(root.val).append("->");
+    helper(res, sb, root.left);
+    helper(res, sb, root.right);
+    sb.setLength(len);
+}
+}
