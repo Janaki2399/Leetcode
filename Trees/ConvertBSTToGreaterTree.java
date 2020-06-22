@@ -16,21 +16,23 @@ Output: The root of a Greater Tree like this:
 Solution:
 Method 1:
 class Solution {
+    int sum=0;
     public TreeNode convertBST(TreeNode root) {
-        con(root,0);
+        con(root);
         return root;
     }
-    public int con(TreeNode root,int sum)
+    public void con(TreeNode root)
     {
         if(root==null)
         {
-            return sum;
+            return ;
         }
-        sum=root.val+con(root.right,sum);
+        con(root.right);
+        sum+=root.val;
         root.val=sum;
-        sum=con(root.left,sum);
+        con(root.left);
         
-    return sum;
+    return ;
     }
 }
 
