@@ -41,7 +41,7 @@ class Solution {
         for(int i=start;i<nums.length;i++)
         {
             templist.add(nums[i]);
-            cm(list,templist,nums,i,target-nums[i]);
+            cm(list,templist,nums,i,target-nums[i]); // only i because the numbers can be repeated
             templist.remove(templist.size()-1);
         }
         }
