@@ -68,3 +68,40 @@ class Solution {
         return arr[nums.length][sum];
     }
 }
+
+Solution 2 : Using 1D array
+class Solution {
+    public boolean canPartition(int[] nums) {
+    int sum=0;
+    for(int i=0;i<nums.length;i++)
+    {
+        sum+=nums[i];
+    }
+    if(sum%2!=0)
+    {
+        return false;
+    }
+        
+    return subsetSum(nums,sum/2);
+    
+    }
+    
+    public boolean subsetSum(int[] nums,int sum)
+    {
+      boolean[] arr=new boolean[sum+1];   
+        int j,i;
+        arr[0]=true;
+        
+        for(i=0;i<nums.length;i++)
+        {
+            for(j=sum;j>=0;j--)
+            {
+                if(j>=nums[i])
+                {
+                    arr[j]= arr[j] ||  arr[j-nums[i]];
+                }
+            }
+        }
+        return arr[sum];
+    }
+}
