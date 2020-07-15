@@ -12,7 +12,19 @@ Output: 2
 Explanation: 13 = 4 + 9.
 */
 
-Solution:
+Solution1:
+Recursion:
+class Solution {
+    public int numSquares(int n) {
+        if(n < 4) return n;
+        int count = n; // as we can form number n with sum of atleqast n 1's.
+        for(int i = 1; i* i <= n; i++) {
+            count = Math.min(count, numSquares(n - i * i) + 1);
+        }
+        return count;
+    }
+}
+Sol 2:
 class Solution {
     public int numSquares(int n) {
         int n1=n/2;
@@ -36,7 +48,7 @@ class Solution {
     }
 }
 
-Solution 2:
+Solution 3: TC - O(n*sqrt(n))
 class Solution {
     public int numSquares(int n) {
       
