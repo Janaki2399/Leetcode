@@ -36,3 +36,43 @@ class Solution {
         return max;
     }
 }
+
+Solution 2 : Efficient Solution 
+public class Solution {
+    public int maxProfit(int prices[]) {
+        int minprice = Integer.MAX_VALUE;
+        int maxprofit = 0;
+        for (int i = 0; i < prices.length; i++) {
+            if (prices[i] < minprice)
+                minprice = prices[i];
+            else if (prices[i] - minprice > maxprofit)
+                maxprofit = prices[i] - minprice;
+        }
+        return maxprofit;
+    }
+
+
+Solution 3: DP
+
+let profit = []; profit[0] = 0;
+for(let i=1;i<prices.length;i++) {
+   profit[i] = Math.max(prices[i] - prices[i-1] + profit[i-1], 0);
+}
+
+Improvisation:
+
+class Solution {
+    public int maxProfit(int[] prices) {
+       int currSum=0;
+        int maxSum=0;
+        
+        for(int i=1;i<prices.length;i++)
+        {
+            currSum=Math.max(0,currSum+prices[i]-prices[i-1]);
+            maxSum=Math.max(currSum,maxSum);
+        }
+        return maxSum;
+    }
+}
+
+
