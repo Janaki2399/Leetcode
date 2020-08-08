@@ -95,3 +95,35 @@ class Solution {
         }
     }
 }
+recursive solution 2:
+class Solution {
+   
+    public int rangeSumBST(TreeNode root, int L, int R) {
+  
+  int sum= helper(root,L,R);
+    
+    return sum;
+    }
+    public int helper(TreeNode root,int L,int R)
+    {
+       if(root==null)
+       {
+           return 0;
+       }
+        int sum=0;
+        if(root.val>=L && root.val<=R )
+        {
+          sum+=root.val;
+        }
+         if(root.val>L)
+        {
+           sum+= helper(root.left,L,R);
+        }
+        if(root.val<R)
+        {
+            sum+=helper(root.right,L,R);
+        }
+        return sum;
+    }
+    
+}
