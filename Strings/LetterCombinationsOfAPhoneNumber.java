@@ -37,7 +37,41 @@ class Solution {
              compute(result,digit,current.append(letter.charAt(i)),index+1,arr);
             current.deleteCharAt(current.length()-1);
         }
+
     }
 }
 
 
+Iterative:
+class Solution {
+    public List<String> letterCombinations(String digit) {
+        LinkedList<String> q=new LinkedList<>();
+      
+        if(digit==null || digit.length()==0)
+        {
+            return q;
+        }
+        String[] arr={"0","1","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+      
+        int index=0;
+        q.add("");
+        StringBuilder current=new StringBuilder();
+    String temp="";
+        for(int i=0;i<digit.length();i++)
+        {
+            int num=Integer.parseInt(String.valueOf(digit.charAt(i)));
+            String s=arr[num];
+          
+            while(q.peek().length()==i)
+            {
+            temp= q.remove();
+            for(int j=0;j<s.length();j++)
+            {
+                q.add(temp+s.charAt(j));
+            }
+            }
+        }
+        return q;
+    }
+    
+}
